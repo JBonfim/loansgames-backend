@@ -39,7 +39,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpGet]
-        [Route("{id}", Name = "GetWithId")]
+        [Route("{id}")]
         public async Task<ActionResult> Get(long id)
         {
             if (!ModelState.IsValid)
