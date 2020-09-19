@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Data.context;
@@ -26,9 +27,12 @@ namespace Api.Data.Repository
              return await query.FirstOrDefaultAsync();
         }
         
-        public Task<GamePersonalLoanEntity> FindByGame(long idGame)
+        public async Task<IEnumerable<GamePersonalLoanEntity>> SelectAllAsync()
         {
-            throw new System.NotImplementedException();
+              IQueryable<GamePersonalLoanEntity> query = _dataset
+                .Include(p => p.Person)
+                .Include(g => g.Game);
+           return await query.ToListAsync();
         }
     }
 }

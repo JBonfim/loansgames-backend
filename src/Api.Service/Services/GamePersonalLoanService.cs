@@ -36,7 +36,7 @@ namespace Api.Service.Services
 
         public async Task<IEnumerable<GamePersonResponseView>> GetAll()
         {
-               var listEntity = await _repository.SelectAsync();
+               var listEntity = await _repository.SelectAllAsync();
                
                return _mapper.Map<IEnumerable<GamePersonResponseView>>(listEntity);
         }
@@ -45,14 +45,14 @@ namespace Api.Service.Services
         {
              var entity = _mapper.Map<GamePersonalLoanEntity>(GamePersonal);
              var result =  await _repository.InsertAsync(entity);
-             return _mapper.Map<GamePersonResponseView>(result);
+             return await Get(result.Id);
         }
 
         public async Task<GamePersonResponseView> Put(GamePersonLoanUpdateDomainModel GamePersonal)
         {
              var entity = _mapper.Map<GamePersonalLoanEntity>(GamePersonal);
              var result =  await _repository.UpdateAsync(entity);
-             return _mapper.Map<GamePersonResponseView>(result);
+            return await Get(result.Id);
         }
     }
 }
