@@ -1,4 +1,6 @@
 using Api.Domain.Dtos.Game;
+using Api.Domain.Dtos.GamePersonalLoan;
+using Api.Domain.Dtos.Person;
 using Api.Domain.Dtos.User;
 using Api.Domain.Entities;
 using AutoMapper;
@@ -15,8 +17,15 @@ namespace Api.CrossCutting.Mappings
             CreateMap<UserResponseDomainModel, UserEntity>()
                .ReverseMap();
 
-              CreateMap<GameResponseDomainModel, GameEntity>()
-               .ReverseMap();
+            CreateMap<GameResponseDomainModel, GameEntity>()
+            .ReverseMap();
+
+            CreateMap<PersonResponseDomainModel, PersonEntity>()
+            .ReverseMap();
+
+             CreateMap<GamePersonResponseView, GamePersonalLoanEntity>()
+            .ReverseMap();
+
 
             
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Api.Domain.Dtos.GamePersonalLoan;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.GamePersonalLoan;
 using Microsoft.AspNetCore.Authorization;
@@ -57,7 +58,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] GamePersonalLoanEntity gameperson)
+        public async Task<ActionResult> Post([FromBody] GamePersonLoanCreateDomainModel gameperson)
         {
             if (!ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] GamePersonalLoanEntity gameperson)
+        public async Task<ActionResult> Put([FromBody] GamePersonLoanUpdateDomainModel gameperson)
         {
             if (!ModelState.IsValid)
             {

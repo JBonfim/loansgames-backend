@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Api.Domain.Dtos.Person;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.Person;
 using Microsoft.AspNetCore.Authorization;
@@ -57,7 +58,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] PersonEntity person)
+        public async Task<ActionResult> Post([FromBody] PersonCreateDomainModel person)
         {
             if (!ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] PersonEntity person)
+        public async Task<ActionResult> Put([FromBody] PersonUpdateDomainModel person)
         {
             if (!ModelState.IsValid)
             {

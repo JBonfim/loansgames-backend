@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api.Domain.Dtos.GamePersonalLoan;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces;
+using Api.Domain.Interfaces.Repository;
 using Api.Domain.Interfaces.Services.GamePersonalLoan;
+using AutoMapper;
 
 namespace Api.Service.Services
 {
     public class GamePersonalLoanService : IGamePersonalLoanService
     {
-         private IRepository< GamePersonalLoanEntity> _repository;
-
-         public GamePersonalLoanService(IRepository< GamePersonalLoanEntity> repository)
+         private IGamePersonalLoanRepository _repository;
+         private readonly IMapper _mapper;
+         public GamePersonalLoanService(IGamePersonalLoanRepository repository
+          , IMapper mapper)
          {
              _repository = repository;
+               _mapper = mapper;
          }
 
         public async Task<bool> Delete(long id)
@@ -20,24 +25,34 @@ namespace Api.Service.Services
            return await _repository.DeleteAsync(id);
         }
 
-        public async Task<GamePersonalLoanEntity> Get(long id)
+        public async Task<GamePersonResponseView> Get(long id)
         {
-             return  await _repository.SelectAsync(id);
+              GamePersonalLoanEntity entity =  await _repository.FirstOrDefaultAsync(id);
+              
+              var result = _mapper.Map<GamePersonResponseView>(entity) ?? new GamePersonResponseView();
+
+              return result;
         }
 
-        public async Task<IEnumerable<GamePersonalLoanEntity>> GetAll()
+        public async Task<IEnumerable<GamePersonResponseView>> GetAll()
         {
-             return await _repository.SelectAsync();
+               var listEntity = await _repository.SelectAsync();
+               
+               return _mapper.Map<IEnumerable<GamePersonResponseView>>(listEntity);
         }
 
-        public async Task<GamePersonalLoanEntity> Post(GamePersonalLoanEntity GamePersonal)
+        public async Task<GamePersonResponseView> Post(GamePersonLoanCreateDomainModel GamePersonal)
         {
-             return await _repository.InsertAsync(GamePersonal);
+             var entity = _mapper.Map<GamePersonalLoanEntity>(GamePersonal);
+             var result =  await _repository.InsertAsync(entity);
+             return _mapper.Map<GamePersonResponseView>(result);
         }
 
-        public async Task<GamePersonalLoanEntity> Put(GamePersonalLoanEntity GamePersonal)
+        public async Task<GamePersonResponseView> Put(GamePersonLoanUpdateDomainModel GamePersonal)
         {
-            return await _repository.UpdateAsync(GamePersonal);
+             var entity = _mapper.Map<GamePersonalLoanEntity>(GamePersonal);
+             var result =  await _repository.UpdateAsync(entity);
+             return _mapper.Map<GamePersonResponseView>(result);
         }
     }
 }

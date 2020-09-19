@@ -5,10 +5,7 @@ namespace Api.Domain.Entities
     public class PersonEntity : BaseEntity
     {
 
-        public PersonEntity()
-        {
-             Gamepersonalloan = new   HashSet<GamePersonalLoanEntity>();
-        }
+      
          public string Name { get; set; }
         public string Address { get; set; }
 
