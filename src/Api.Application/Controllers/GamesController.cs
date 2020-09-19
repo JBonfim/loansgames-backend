@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Api.Domain.Dtos.Game;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.Game;
 using Microsoft.AspNetCore.Authorization;
@@ -57,7 +58,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] GameEntity game)
+        public async Task<ActionResult> Post([FromBody] GameCreateDomainModel game)
         {
             if (!ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] GameEntity game)
+        public async Task<ActionResult> Put([FromBody] GameUpdateDomainModel game)
         {
             if (!ModelState.IsValid)
             {

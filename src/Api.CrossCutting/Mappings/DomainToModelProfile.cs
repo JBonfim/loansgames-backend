@@ -1,3 +1,4 @@
+using Api.Domain.Dtos.Game;
 using Api.Domain.Dtos.User;
 using Api.Domain.Entities;
 using AutoMapper;
@@ -13,6 +14,11 @@ namespace Api.CrossCutting.Mappings
             CreateMap<UserEntity, UserCreateDomainModel>()
                 .ReverseMap();
             CreateMap<UserEntity, UserUpdateDomainModel>()
+                .ReverseMap();
+
+              CreateMap<GameEntity, GameCreateDomainModel>()
+                .ReverseMap();
+            CreateMap<GameEntity, GameUpdateDomainModel>()
                 .ReverseMap();
         }
     }

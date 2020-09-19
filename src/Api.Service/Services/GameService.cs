@@ -1,18 +1,22 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api.Domain.Dtos.Game;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces;
 using Api.Domain.Interfaces.Services.Game;
+using AutoMapper;
 
 namespace Api.Service.Services
 {
     public class GameService : IGameService
     {
         private IRepository<GameEntity> _repository;
+           private readonly IMapper _mapper;
 
-        public GameService(IRepository<GameEntity> repository)
+        public GameService(IRepository<GameEntity> repository, IMapper mapper)
         {
             _repository = repository;
+             _mapper = mapper;
         }
 
         public async Task<bool> Delete(long id)
@@ -20,24 +24,32 @@ namespace Api.Service.Services
             return await _repository.DeleteAsync(id);
         }
 
-        public async Task<GameEntity> Get(long id)
+        public async Task<GameResponseDomainModel> Get(long id)
         {
-            return  await _repository.SelectAsync(id);
+              var entity = await _repository.SelectAsync(id);
+            return _mapper.Map<GameResponseDomainModel>(entity) ?? new GameResponseDomainModel();
         }
 
-        public async Task<IEnumerable<GameEntity>> GetAll()
+        public async Task<IEnumerable<GameResponseDomainModel>> GetAll()
         {
-            return await _repository.SelectAsync();
+           var listEntity = await _repository.SelectAsync();
+            return _mapper.Map<IEnumerable<GameResponseDomainModel>>(listEntity);
         }
 
-        public async Task<GameEntity> Post(GameEntity game)
+        public async Task<GameResponseDomainModel> Post(GameCreateDomainModel game)
         {
-            return await _repository.InsertAsync(game);
+             var entity = _mapper.Map<GameEntity>(game);
+            var result = await _repository.InsertAsync(entity);
+
+            return _mapper.Map<GameResponseDomainModel>(result);
         }
 
-        public async Task<GameEntity> Put(GameEntity game)
+        public async Task<GameResponseDomainModel> Put(GameUpdateDomainModel game)
         {
-            return await _repository.UpdateAsync(game);
+            var entity = _mapper.Map<GameEntity>(game);
+
+            var result = await _repository.UpdateAsync(entity);
+            return _mapper.Map<GameResponseDomainModel>(result);
         }
     }
 }
