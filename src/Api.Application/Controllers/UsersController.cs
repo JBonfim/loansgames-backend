@@ -14,7 +14,7 @@ namespace Api.Application.Controllers
     public class UsersController : ControllerBase
     {
 
-         public IUserService _service { get; set; }
+         public IUserService _service;
         public UsersController(IUserService service)
         {
             _service = service;

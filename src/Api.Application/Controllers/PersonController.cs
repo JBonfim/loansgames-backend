@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
 {
+     [Route("api/[controller]")]
+    [ApiController]
     public class PersonController : ControllerBase
     {
-         public IPersonService _service { get; set; }
+         public IPersonService _service;
 
          public PersonController(IPersonService service)
          {

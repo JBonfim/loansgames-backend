@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
 {
+     [Route("api/[controller]")]
+    [ApiController]
     public class GamesController  : ControllerBase
     {
-         public IGameService _service { get; set; }
+         public IGameService _service ;
 
          public GamesController(IGameService service)
          {
