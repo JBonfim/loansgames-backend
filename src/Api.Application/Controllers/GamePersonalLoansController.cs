@@ -39,6 +39,25 @@ namespace Api.Application.Controllers
             }
         }
 
+         [Authorize("Authorization")]
+        [HttpGet]
+         [Route("/statusisactive")]
+        public async Task<ActionResult> SelectAllAsyncIsStatusIsActive()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  
+            }
+            try
+            {
+                return Ok(await _service.SelectAllAsyncIsStatusIsActive());
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> Get(long id)

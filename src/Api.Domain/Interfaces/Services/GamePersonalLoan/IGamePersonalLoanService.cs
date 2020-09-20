@@ -12,5 +12,7 @@ namespace Api.Domain.Interfaces.Services.GamePersonalLoan
         Task<GamePersonResponseView> Post(GamePersonLoanCreateDomainModel GamePersonal);
         Task<GamePersonResponseView> Put(GamePersonLoanUpdateDomainModel GamePersonal);
         Task<bool> Delete(long id);   
+
+        Task<IEnumerable<GamePersonResponseView>> SelectAllAsyncIsStatusIsActive();
     }
 }

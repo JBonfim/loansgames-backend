@@ -54,5 +54,12 @@ namespace Api.Service.Services
              var result =  await _repository.UpdateAsync(entity);
             return await Get(result.Id);
         }
+
+        public async Task<IEnumerable<GamePersonResponseView>> SelectAllAsyncIsStatusIsActive(){
+              
+              var listEntity = await _repository.SelectAllAsyncIsStatusIsActive();
+               
+               return _mapper.Map<IEnumerable<GamePersonResponseView>>(listEntity);
+        }
     }
 }

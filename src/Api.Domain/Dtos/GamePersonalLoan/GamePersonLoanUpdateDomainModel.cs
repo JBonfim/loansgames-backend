@@ -6,6 +6,12 @@ namespace Api.Domain.Dtos.GamePersonalLoan
     {
          [Required(ErrorMessage = "Id é um campo obrigatório")]
          public long Id { get; set; }
+
+        [Required(ErrorMessage = "Pessoa é um campo obrigatório")]
+         public long IdPerson { get; set; }
+
+        [Required(ErrorMessage = "Jogo é um campo obrigatório")]
+         public long IdGame { get; set; }
         public bool isActive { get; set; } 
     }
 }

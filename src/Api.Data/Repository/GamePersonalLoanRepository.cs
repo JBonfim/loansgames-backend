@@ -34,5 +34,15 @@ namespace Api.Data.Repository
                 .Include(g => g.Game);
            return await query.ToListAsync();
         }
+
+         public async Task<IEnumerable<GamePersonalLoanEntity>> SelectAllAsyncIsStatusIsActive()
+        {
+              IQueryable<GamePersonalLoanEntity> query = _dataset
+                .Include(p => p.Person)
+                .Include(g => g.Game);
+
+               query = query.Where(c => c.isActive  ==  true);
+           return await query.ToListAsync();
+        }
     }
 }
