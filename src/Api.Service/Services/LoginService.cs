@@ -53,7 +53,7 @@ namespace Api.Service.Services
                         new[]
                         {
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, baseUser.Email),
+                            new Claim(JwtRegisteredClaimNames.UniqueName, baseUser.Name),
                         }
                     );
 

@@ -87,7 +87,7 @@ namespace application
             });
 
 
-
+            services.AddCors();
 
             
             services.AddSwaggerGen(c =>
@@ -135,6 +135,8 @@ namespace application
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Emprestimo de Jogos API");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors(x  => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
