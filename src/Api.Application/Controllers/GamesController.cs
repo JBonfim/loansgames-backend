@@ -39,6 +39,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> Get(long id)
@@ -57,6 +58,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GameCreateDomainModel game)
         {
@@ -82,6 +84,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] GameUpdateDomainModel game)
         {
@@ -107,6 +110,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {

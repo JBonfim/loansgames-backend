@@ -38,6 +38,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
          [HttpGet]
         [Route("{id}", Name = "GetWithId")]
         public async Task<ActionResult> Get(long id)
@@ -56,6 +57,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserCreateDomainModel user)
         {
@@ -81,6 +83,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] UserUpdateDomainModel user)
         {
@@ -106,6 +109,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {

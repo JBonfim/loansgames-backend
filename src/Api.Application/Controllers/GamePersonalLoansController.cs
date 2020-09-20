@@ -58,6 +58,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> Get(long id)
@@ -76,6 +77,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] GamePersonLoanCreateDomainModel gameperson)
         {
@@ -101,6 +103,7 @@ namespace Api.Application.Controllers
             }
         }
 
+        [Authorize("Authorization")]
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] GamePersonLoanUpdateDomainModel gameperson)
         {
@@ -125,7 +128,8 @@ namespace Api.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-
+        
+        [Authorize("Authorization")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {
