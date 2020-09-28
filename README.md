@@ -7,3 +7,6 @@
 foi construido para olhar para essa porta.
 - Foi Aplicado a arquitetura DDD.
 
+# Rodar o Docker Compose
+- docker-compose  -f docker-compose.yml up
+

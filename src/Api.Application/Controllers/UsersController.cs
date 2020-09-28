@@ -61,6 +61,7 @@ namespace Api.Application.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserCreateDomainModel user)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
